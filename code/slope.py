@@ -1,3 +1,4 @@
+#global import
 import numpy as np
 import math
 import sys
@@ -5,10 +6,13 @@ import matplotlib.pyplot as plt
 from scipy.linalg import inv,pinvh,eig,eigh
 from scipy.stats import linregress
 from scipy.special import gamma
+from scipy.sparse.linalg import cg
+#local import
 from code.fracpower import Adaptative_Quad_DE
+from code.myfunc import conjugate_grad
 
 # Compute and export slope
-def Slope(a=1,p=1,nx=100,npt=20,methT='trapeze',methB='inv',export=False):
+def Slope(a=1,p=1,nx=100,npt=20,methT='trapeze',methB='inv',export=False,resol='no'):
     #
     np.random.seed(32)
     # power subdunction
@@ -42,7 +46,12 @@ def Slope(a=1,p=1,nx=100,npt=20,methT='trapeze',methB='inv',export=False):
         reg_sup       = alpha_op/10
         for alpha in np.linspace(reg_inf,reg_sup,1000*npt):
             # step 3 : inversion
-            xd = np.linalg.inv(tTT + alpha*tDD).dot(np.transpose(T).dot(yd))
+            if resol == 'cg':
+                xd = cg(tTT + alpha*tDD,np.transpose(T).dot(yd))
+            if resol == 'mycg':
+                xd,_ = conjugate_grad(tTT + alpha*tDD,np.transpose(T).dot(ye))
+            else:
+                xd = np.linalg.inv(tTT + alpha*tDD).dot(np.transpose(T).dot(yd))
             # step 4 : error
             error = np.linalg.norm(xd-x)
             if error < error_compare:
@@ -189,7 +198,7 @@ def MatrixGen(a=1,p=1,nx=100,method1='trapeze',method2='inv'):
     return T,tTT,tDD
 
 # Solve for one couple (x,y,rho)    
-def Solver(x,y,Matrix,reg_inf=10**-10,reg_sup=0.5,export=False):
+def Solver(x,y,Matrix,reg_inf=10**-10,reg_sup=0.5,resol='no',export=False):
     #
     a         = 3
     p         = 1
@@ -202,7 +211,12 @@ def Solver(x,y,Matrix,reg_inf=10**-10,reg_sup=0.5,export=False):
     #
     for alpha in np.linspace(reg_inf,reg_sup,2000):
         # step 2 : inversion
-        xd    = np.linalg.inv(tTT + alpha*tDD).dot(np.transpose(T).dot(y))
+        if resol == 'cg':
+            xd = cg(tTT + alpha*tDD,np.transpose(T).dot(y))
+        if resol == 'mycg':
+            xd,_ = conjugate_grad(tTT + alpha*tDD,np.transpose(T).dot(y))
+        else:
+            xd = np.linalg.inv(tTT + alpha*tDD).dot(np.transpose(T).dot(y))
         # step 3 : error
         error = np.linalg.norm(xd-x)
         if error < error_compare:
