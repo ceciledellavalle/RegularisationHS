@@ -1,3 +1,15 @@
+"""
+Implementation of functions to compute fractional power of matrix
+from paper
+-
+Schur–Padé Algorithm for Fractional Powers of a Matrix
+Higham, Nicholas J. and Lin, Lijing 
+Manchester Institute for Mathematical Sciences School of Mathematics
+2011
+-
+@author: Cecile Della Valle
+@date: 03/01/2021
+"""
 import numpy as np
 import math
 
