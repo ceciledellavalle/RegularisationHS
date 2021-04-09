@@ -2,8 +2,9 @@
 Various functions used in the solver of Abel integral inversions.
 Functions
 -------
-    conjugate_grad : conjugate gradient method to solve linear problem Ax = b
-    power          : 
+    MatrixGen      : compute operator, symmetrical operator and derivative
+    Conjugate_grad : conjugate gradient method to solve linear problem Ax = b
+    Power          : compute fractional power of matricees
 @author: Cecile Della Valle
 @date: 03/01/2021
 """
@@ -20,7 +21,16 @@ def MatrixGen(a,p,nx,kernel,method1,method2):
       Compute the operators linked to the inverse problem.
          Parameters
          ----------
-               --
+              a          (float): order of ill-posedness
+              p          (float): order of regularization
+              nx           (int): discretization time step
+              kernel      (bool): True if the Abel operator includes a kernel k(t,s)= 1/(t+s)^0.5, 
+                                  False otherwise, and k(t,s)=1
+              method1        (str): 'trapeze' for the trapeze approximation of T, 
+                                   is also implemented the finite element method ('eltP0') 
+                                   and the computation using semi-groups properties ('fracpower')
+              method2        (str): 'explicit' for the finite difference method to approximate B,
+                                   but can also be define as (tTT)^-1 ('inv')
         Retruns
         ----------
              (numpy.array): Abel operator T, size nx,nx
