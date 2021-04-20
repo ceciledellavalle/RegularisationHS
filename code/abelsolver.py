@@ -20,6 +20,7 @@ from scipy.sparse.linalg import cg
 from code.myfunc import Conjugate_grad
 from code.myfunc import Power
 from code.myfunc import MatrixGen
+from code.myfunc import Export
 
 # Solver
 class AbelSolver():
@@ -47,7 +48,7 @@ class AbelSolver():
     # initialization of one inverse problem
     def __init__(self,a=1,p=1,nx=100,kernel=False,npt=20,\
                  methT='trapeze',methB='explicit',resol='no',\
-                 folder ='./../redaction/data'):
+                 folder ='./plots/data'):
         """
             Define one instance of the inverse problem of order a 
                  with regularization by the generalized Tikhonov method of order p.
@@ -67,8 +68,6 @@ class AbelSolver():
                                     or the scipy conjugate grandient method ('cg'), or my own implementation of the conjugate gradient ('mycg')
                 folder       (str): folder to export datas and plots
         """
-        # random initialization
-        np.random.seed(32)
         # physics
         self.a = a
         self.p = p
@@ -85,26 +84,34 @@ class AbelSolver():
         self.T, self.tTT, self.tDD = MatrixGen(a,p,nx,kernel,methT,methB)
         
     # Compute and export slope
-    def Slope(self,npt=20,export=False):
+    def Slope(self,npt=20,export=False,seed=True,style='gauss'):
         """
           Compute the slope of convergence of the error according to the noise level (or standard deviation of noise)
           of the corresponding inverse problem, ill-posed of order a and regularized with order p
              Parameters
              ----------
-                   npt           (int): number of point to compute slope
-                   folder       (str): folder to export datas and plots
+                   npt          (int): number of point to compute slope
+                   export      (bool): if True, then export curve in self.folder
+                   seed        (bool): if True, the random vector is seed, else it is not
+                   style     (string): define the style of the curve x, 
+                                        if 'gauss' then it is a centered gaussian function
+                                        if 'offgauss' then it is gaussian like but not centered
             Retruns
             ----------
                     --
         """
         #
-        x,y,_         = self.DataGen(export=export)
+        # random initialization
+        if seed:
+            np.random.seed(32)
+        # generate data
+        x,y,_         = self.DataGen(export=export,style=style)
         # norm a priori
         q             = 2*self.p+self.a
         R             = Power(self.tDD,q/(2*self.p))
         rho           = np.linalg.norm(R.dot(x))
         # eps
-        eps           = np.logspace(-3,-1,npt)
+        eps           = np.logspace(-4,-1,npt)
         delta         = np.zeros(npt)
         err           = np.zeros(npt)
         # initialise error vector 
@@ -116,10 +123,10 @@ class AbelSolver():
             delta[i]      = np.linalg.norm(yd-y)
             # step 2 : optimal alpha
             #alpha_op      = (delta[i]/rho)**(2*(a+p)/(a+q))
-            reg_inf       = 10**-16 #alpha_op/10
-            reg_sup       = 10**-6 #alpha_op/10
+            reg_inf       = 10**-16
+            reg_sup       = 10**-6
             #
-            if i%10==0:
+            if i%6==0:
                 xadp = self.Solver(x,yd,reg_inf=reg_inf,reg_sup=reg_sup,verbose=True)
                 print("==========================================")
             else:
@@ -127,7 +134,7 @@ class AbelSolver():
             # step 3 : compute error
             err[i] = np.linalg.norm(xadp-x)
         # plot
-        s,r,Re,_,_ = linregress(np.log(delta[:15]), np.log(err[:15]))
+        s,r,Re,_,_ = linregress(np.log(delta[3:17]), np.log(err[3:17]))
         plt.loglog(delta,err,'r+',label='error')
         plt.loglog(delta,np.exp(r)*delta**s,label="%.3f"%s)
         plt.legend()
@@ -144,25 +151,33 @@ class AbelSolver():
             Export(delta,np.exp(r)*delta**s,self.folder,"errorline_a{}p{}".format(self.a,self.p)+kern)
 
     # Generate vector x and y
-    def DataGen(self,noise=0.05,export=False):
+    def DataGen(self,noise=0.05,style='gauss',export=False):
         """
           Compute the slope of convergence of the error according to the noise level (or standard deviation of noise)
           of the corresponding inverse problem, ill-posed of order a and regularized with order p
              Parameters
              ----------
-                   npt           (int): number of point to compute slope
-                   folder       (str): folder to export datas and plots
+                   noise       (float): noise level (in %)
+                   style      (string): define the style of the curve x, 
+                                        if 'gauss' then it is a centered gaussian function
+                                        if 'offgauss' then it is gaussian like but not centered
+                   export       (bool): if True, then export curve in self.folder
             Retruns
             ----------
                  (numpy.array): gaussian vector of size nx
                  (numpy.array): image by the Abel operator of a gaussian vector, size nx
                  (numpy.array): noisy image by the Abel operator of a gaussian vector, size nx
         """
-        np.random.seed(32)
         # Synthetic Data
         t    = np.linspace(0,1-1/self.nx,self.nx)
-        x    = np.exp(-(t-0.5)**2/0.1**2)
-        x    = x/np.amax(x)
+        # gauss
+        if style=='gauss':
+            x    = np.exp(-(t-0.5)**2/0.1**2)
+        elif style=='offgauss':
+            x    = np.exp(-(t-0.2)**2/0.2**2)
+        else:
+            x = np.ones(self.nx)
+        #
         y    = self.T.dot(x)
         # add noise
         no   = np.random.randn(self.nx)
@@ -174,9 +189,9 @@ class AbelSolver():
                 kern = 'kernel'
             else:
                 kern=''
-            Export(t,x,self.folder,"gauss{}".format(a)+kern)
-            Export(t,y,self.folder,"Tgauss{}".format(a)+kern)
-            Export(t,yd,self.folder,"Tgaussn{}".format(a)+kern)
+            Export(t,x,self.folder,style+"{}".format(self.a)+kern)
+            Export(t,y,self.folder,"T"+style+"{}".format(self.a)+kern)
+            Export(t,yd,self.folder,"T"+style+"n"+"{}".format(self.a)+kern)
         return x,y,yd
 
 
@@ -217,11 +232,13 @@ class AbelSolver():
                 xadp          = xd.copy()
         # warning
         if (reg==reg_inf): 
-            print("inf=",reg_inf,", reg=",reg)
+            print("noise={:.3e}".format(np.linalg.norm(x-xd)/np.linalg.norm(x)),\
+                  "inf=",reg_inf,", reg=",reg)
             print("Wrong regularization parameter, too high")
             print("==========================================")
         if (reg==reg_sup):
-            print("sup=",reg_sup,", reg=",reg)
+            print("noise={:.3e}".format(np.linalg.norm(x-xd)/np.linalg.norm(x)),\
+                  "sup=",reg_sup,", reg=",reg)
             print("Wrong regularization parameter, too low")
             print("==========================================")
         # verbose and plots
@@ -242,7 +259,7 @@ class AbelSolver():
                 kern = 'kernel'
             else:
                 kern=''
-            Export(t,xadp,"gauss_pred{}{}".format(self.a,self.p)+kern)
+            Export(t,xadp,self.folder,"pred{}{}".format(self.a,self.p)+kern)
         # step 6 : return
         return xadp
     

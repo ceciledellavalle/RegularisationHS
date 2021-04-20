@@ -105,8 +105,8 @@ def MatrixGen(a,p,nx,kernel,method1,method2):
             B        = 2*nx**2*np.diag(np.ones(nx))\
                       -1*nx**2*np.diag(np.ones(nx-1),-1)\
                       -1*nx**2*np.diag(np.ones(nx-1),1)
-            B[0,0]   = nx**2
-            #B[0,1]   = -2*nx**2
+            B[0,0]   = 2*nx**2
+            B[0,1]   = -2*nx**2
         elif a<=2:
             B        = 6*nx**4*np.diag(np.ones(nx))\
                        -4*nx**4*np.diag(np.ones(nx-1),-1)\
@@ -122,7 +122,8 @@ def MatrixGen(a,p,nx,kernel,method1,method2):
         else:
             print("Pas implémenté.")
             B = np.eye(nx)
-        D   = Power(B,p/2)
+        D   = Power(B,1/2)
+        D   = Power(D,p)
         tDD = np.transpose(D).dot(D)
     # ==================================================
     #
@@ -180,6 +181,12 @@ def Power(M,r):
         D,P = eigh(M)
         D = np.diag(D**r)
         D = P.dot(D).dot(np.transpose(P))
+    elif (r>=1)&(r%1==0): # r is an integer
+        q = int(r)
+        nx,_ = M.shape
+        D = np.eye(nx)
+        for _ in range(q):
+            D *= M
     else: # M is not symmetric, but it has to be invertible
         try:
             Minv = np.linalg.inv(M)
