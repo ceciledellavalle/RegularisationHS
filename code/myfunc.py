@@ -54,10 +54,10 @@ def MatrixGen(a,p,nx,kernel,method1,method2):
                                 -(i-j-1)**a)
     # methode 1 : trapeze
     elif method1=='trapeze': #default
-        T = np.zeros((nx,nx))
-        coeff = 1/(2*a)*nx**-a
+        T      = np.zeros((nx,nx))
+        coeff  = 1/(2*a)*nx**-a
         for i in range(1,nx):
-            for j in range(i):#lower half
+            for j in range(i+1):#lower half
                 if j==0: 
                     T[i,j] = coeff*(i**a-(i-1)**a)
                 elif i==j:#diagonal
@@ -98,33 +98,53 @@ def MatrixGen(a,p,nx,kernel,method1,method2):
     tTT = np.transpose(T).dot(T)
     # ==================================================
     # Matrice regularisation
-    if method2=='inv':
-        tDD = power(self.tTT,-p/a)
     if method2=='explicit':#default
-        if a<=1:
+        if p==0:
+            tDD = np.eye(nx)
+        elif p<=1:
+            D       = -nx*np.diag(np.ones(nx))\
+                      +nx*np.diag(np.ones(nx-1),1)
+            tDD     = np.transpose(D).dot(D)
+        elif (p<=2)&(a<=1):
             B        = 2*nx**2*np.diag(np.ones(nx))\
                       -1*nx**2*np.diag(np.ones(nx-1),-1)\
                       -1*nx**2*np.diag(np.ones(nx-1),1)
             B[0,0]   = 2*nx**2
             B[0,1]   = -2*nx**2
-        elif a<=2:
+            if p<2:
+                D    = Power(B,p/2)
+            else:
+                D    = B.copy()
+            tDD      = np.transpose(D).dot(D)
+        elif (p<4)&(a<=2):
             B        = 6*nx**4*np.diag(np.ones(nx))\
                        -4*nx**4*np.diag(np.ones(nx-1),-1)\
                        -4*nx**4*np.diag(np.ones(nx-1),1)\
                        +1*nx**4*np.diag(np.ones(nx-2),-2)\
                        +1*nx**4*np.diag(np.ones(nx-2),2)
             B[0,0]   = 2*nx**4
-            B[0,1]   = -2*nx**4
+            B[0,2]   = 2*nx**4
             B[1,0]   = -2*nx**4
             B[1,1]   = 5*nx**4
             B[-1,-1] = 7*nx**4
-            B        = Power(B,1/2)
+            D        = Power(B,p/4)
+            tDD      = np.transpose(D).dot(D)
         else:
             print("Pas implémenté.")
-            B = np.eye(nx)
-        D   = Power(B,1/2)
-        D   = Power(D,p)
-        tDD = np.transpose(D).dot(D)
+            tDD = np.eye(nx)
+    elif method2=='constant': # for all, the matrix B_2
+        B        = 2*nx**2*np.diag(np.ones(nx))\
+                  -1*nx**2*np.diag(np.ones(nx-1),-1)\
+                  -1*nx**2*np.diag(np.ones(nx-1),1)
+        B[0,0]   = 2*nx**2
+        B[0,1]   = -2*nx**2
+        if p<2:
+            D    = Power(B,p/2)
+        else:
+            D    = B.copy()
+        tDD      = np.transpose(D).dot(D)
+    elif method2=='inv':# direct inversion of tTT
+        tDD = Power(tTT,-p/a)
     # ==================================================
     #
     return T,tTT,tDD
