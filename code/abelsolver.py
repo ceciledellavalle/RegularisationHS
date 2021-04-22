@@ -143,6 +143,7 @@ class AbelSolver():
         plt.loglog(delta,np.exp(r)*delta**s,label="%.3f"%s)
         plt.legend()
         # stat
+        print("Statistic for a centered Gaussian : ")
         print("th. smax =", q/(self.a+q),", s = %.2f"%(s), ", R = %.5f"%(Re))
         print("th. qmax = ",q ,", q = %.2f"%(s*self.a/(1-s)))
         # export
@@ -271,4 +272,76 @@ class AbelSolver():
         # step 6 : return
         return xadp
     
-
+    # Solve for one couple (x,y,rho)    
+    def BlindSolver(self,y,reg_inf=10**-6,reg_sup=10**-3,\
+               verbose=True,warning=False,export=False):
+        """
+          Solve the inverse problem for image y that may or may not be noisy,
+          and the regularisation paramter alpha is blindly found.
+          
+             Parameters
+             ----------
+                   y   (numpy.array): image of x or noisy image of x, size nx
+                   reg_inf   (float): lower boundary for regularization parameter
+                   reg_sup   (float): higher boundary for regularization parameter
+                   verbose    (bool): if True, print statistic and plot reconstructed function
+                   warning    (bool): if True, print warning if the regularization parameter saturates
+                   export     (bool): export datas
+            Retruns
+            ----------
+                 (numpy.array): solution of the regularized inverse problem, size nx
+        """
+        # step 1 : estimating delta
+        delta = self.nx*np.linalg.norm(y[:20])/20       
+        reg   = 0
+        error_compare = delta
+        # step 2 :loop over alpha to find the best candidate of regularization
+        for alpha in np.linspace(reg_inf,reg_sup,10000):
+            # step 3 : inversion
+            if self.resol == 'cg':
+                xd = cg(self.tTT + alpha*self.tDD,np.transpose(self.T).dot(y))
+            if self.resol == 'mycg':
+                xd,_ = Conjugate_grad(self.tTT + alpha*self.tDD,np.transpose(self.T).dot(y))
+            else:
+                xd = np.linalg.inv(self.tTT + alpha*self.tDD).dot(np.transpose(self.T).dot(y))
+            # step 4 : error computation
+            Txd   = self.T.dot(xd)
+            error = np.linalg.norm(Txd-y)
+            if error < error_compare:
+                error_compare = error
+                reg           = alpha
+                xadp          = xd.copy()
+        # step 5 : alert and statistics
+        # warning
+        if warning:
+            if (reg==reg_inf): 
+                print("noise={:.3e}".format(delta),\
+                      "inf=",reg_inf,", reg=",reg)
+                print("Wrong regularization parameter, too high")
+                print("==========================================")
+            elif (reg==reg_sup):
+                print("noise={:.3e}".format(delta),\
+                      "sup=",reg_sup,", reg=",reg)
+                print("Wrong regularization parameter, too low")
+                print("==========================================")
+        # verbose and plots
+        if verbose:
+            print("delta={:.3e}, inf={:.3e}, sup={:.3e}, reg={:.3e}".format(\
+                     delta,reg_inf,reg_sup,reg))
+            t = np.linspace(0,1,self.nx)
+            plt.figure(figsize=(7, 4))
+            plt.subplot(121)
+            plt.plot(t,y)
+            plt.subplot(122)
+            plt.plot(t,xadp)
+            plt.show()
+        # export
+        if export:
+            if self.kern==True:
+                kern = 'kernel'
+            else:
+                kern=''
+            Export(t,xadp,self.folder,"pred{}{}".format(self.a,self.p)+kern)
+        # step 6 : return
+        return xadp, delta
+    

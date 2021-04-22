@@ -43,8 +43,8 @@
 % ========================================================================
 
 % Crenel
-\def\datacurve{../data/error_a1p1.txt}
-\def\datacurvenoise{../data/errorline_a1p1.txt}
+\def\datacurve{../data/pred0.51kernel.txt}
+\def\datacurvenoise{../data/pred0.52kernel.txt}
 
 
 % Latex commands
@@ -55,7 +55,7 @@
 \begin{document}
 
 \begin{tikzpicture}
-\begin{loglogaxis}[
+\begin{axis}[
 			     % ==================
 			     % Main options
 			     % ==================
@@ -65,33 +65,33 @@
 				 % ==================
 			     % Label options
 			     % ==================
-				 xlabel = $\delta$,
-				 ylabel = $\| x_{\delta,\alpha,p} - x \|$,
+				 xlabel = $t$,
+				 ylabel = $x(t)$,
 				 label style = {font=\normalsize},
 				 % ==================
 				 % Title options
 				 % ==================
-				 title =  {$a=1$,  $p=1$},
+				 title =  {\Large $x_{\delta,\alpha,p}$,  $a=0.5$,  kernel},
 				 % ==================
 				 % Legend options
 				 % ==================
 				 legend style = {
 				 				 font=\footnotesize, 
 								 line width = .2pt, 
-								 legend pos  = north west,
+								 legend pos  = north east,
 								},
 				 ]				 
  		\addplot[
 				 % ==================
 				 % Line options
 				 % ==================
- 				 black,
- 				 line width = 0. 2pt,
-				 style = dashed,
+ 				 blue,
+ 				 line width = 1. pt,
+				 style = solid,
 				 % ==================
 				 % Mark options
 				 % ==================
- 				 mark = *,
+ 				 mark = none,
 				 ]
  		table[
  		x = xdata,
@@ -99,15 +99,15 @@
  		]
  		{\datacurve}
 		;
-		\addlegendentry{data} 
+		\addlegendentry{$p=1$} 
 		
  		\addplot[
 				 % ==================
 				 % Line options
 				 % ==================
-		 		 red,
-		 		 line width = 1. pt,
-				 style = solid,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
+		 		 cyan,
+		 		 line width = 1. 5pt,
+				 style = dashed,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
 				 % ==================
 				 % Mark options
 				 % ==================
@@ -119,9 +119,9 @@
 		 		]
 		 		{\datacurvenoise}
 				;
-				\addlegendentry{$s=0.45$} 
+				\addlegendentry{$p=2$} 
 		
-\end{loglogaxis}	
+\end{axis}	
 \end{tikzpicture}
 
 \end{document}

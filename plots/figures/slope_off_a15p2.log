@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.6)  22 APR 2021 11:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.6)  22 APR 2021 10:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**slope_off_1.tex
-(./slope_off_1.tex
+**slope_off_a15p2.tex
+(./slope_off_a15p2.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cls
@@ -855,27 +855,28 @@ s/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ))
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-5.
+7.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (./slope_off_1.aux)
-\openout1 = `slope_off_1.aux'.
+)
+(./slope_off_a15p2.aux)
+\openout1 = `slope_off_a15p2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
 \Hy@linkcounter=\count325
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/siunitx/siunitx-abbreviations.cfg
@@ -911,100 +912,104 @@ Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.17}).
 
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 5
-5.
+7.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-55.
+57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-55.
+57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 55.
+(Font)              <10> on input line 57.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <7> on input line 57.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 55.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 55.
+(Font)              <5> on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 55.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
 
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+lasy on input line 55
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 57
 .
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 55
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 57
 .
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmss on input line 
-55.
+57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-55.
+57.
 
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Package pgfplots info on input line 83: Using 'lua backend=false' for axis: xmo
+Package pgfplots info on input line 85: Using 'lua backend=false' for axis: xmo
 de=log unsupported (yet).
-Package pgfplots info on input line 83: Using 'lua backend=false' for axis: ymo
+Package pgfplots info on input line 85: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
-PGFPlots: reading {../data/error_a1p1.txt}
-PGFPlots: reading {../data/errorline_a1p1.txt}
+PGFPlots: reading {../data/error_a1.5p2.txt}
+PGFPlots: reading {../data/errorline_a1.5p2.txt}
+PGFPlots: reading {../data/error_a1.5p2_cste.txt}
+PGFPlots: reading {../data/errorline_a1.5p2_cste.txt}
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 124.
+(Font)              <8> on input line 164.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 124.
+(Font)              <6> on input line 164.
  [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./slop
-e_off_1.aux) ) 
+e_off_a15p2.aux) ) 
 Here is how much of TeX's memory you used:
- 29894 strings out of 478994
- 786684 string characters out of 5858185
- 1179786 words of memory out of 5000000
- 46827 multiletter control sequences out of 15000+600000
+ 29903 strings out of 478994
+ 786873 string characters out of 5858185
+ 1189310 words of memory out of 5000000
+ 46832 multiletter control sequences out of 15000+600000
  440221 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,18n,116p,732b,2175s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
-enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/loca
-l/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/
-2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf
--dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts
-/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publ
-ic/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.
-pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/lo
-cal/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on slope_off_1.pdf (1 page, 83803 bytes).
+ 113i,18n,116p,736b,2175s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.
+enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/
+local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/f
+onts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/
+public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/l
+mr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/tex
+live/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/te
+xmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/f
+onts/type1/public/lm/lmsy7.pfb>
+Output written on slope_off_a15p2.pdf (1 page, 107090 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 78 PDF objects out of 1000 (max. 8388607)
+ 48 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

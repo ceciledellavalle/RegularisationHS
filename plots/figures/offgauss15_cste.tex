@@ -43,8 +43,9 @@
 % ========================================================================
 
 % Crenel
-\def\datacurve{../data/error_a1p1.txt}
-\def\datacurvenoise{../data/errorline_a1p1.txt}
+\def\datacurve{../data/offgauss1.5.txt}
+\def\datacurvenoise{../data/pred1.52.txt}
+\def\datacurvenoisecste{../data/pred1.52_cste.txt}
 
 
 % Latex commands
@@ -55,7 +56,7 @@
 \begin{document}
 
 \begin{tikzpicture}
-\begin{loglogaxis}[
+\begin{axis}[
 			     % ==================
 			     % Main options
 			     % ==================
@@ -65,20 +66,20 @@
 				 % ==================
 			     % Label options
 			     % ==================
-				 xlabel = $\delta$,
-				 ylabel = $\| x_{\delta,\alpha,p} - x \|$,
+				 xlabel = $t$,
+				 ylabel = $x(t)$,
 				 label style = {font=\normalsize},
 				 % ==================
 				 % Title options
 				 % ==================
-				 title =  {$a=1$,  $p=1$},
+				 title =  {$a=1.5$,  $p=2$},
 				 % ==================
 				 % Legend options
 				 % ==================
 				 legend style = {
 				 				 font=\footnotesize, 
 								 line width = .2pt, 
-								 legend pos  = north west,
+								 legend pos  = north east,
 								},
 				 ]				 
  		\addplot[
@@ -86,12 +87,12 @@
 				 % Line options
 				 % ==================
  				 black,
- 				 line width = 0. 2pt,
-				 style = dashed,
+ 				 line width = 1. pt,
+				 style = solid,
 				 % ==================
 				 % Mark options
 				 % ==================
- 				 mark = *,
+ 				 mark = none,
 				 ]
  		table[
  		x = xdata,
@@ -99,15 +100,15 @@
  		]
  		{\datacurve}
 		;
-		\addlegendentry{data} 
+		\addlegendentry{$x$} 
 		
  		\addplot[
 				 % ==================
 				 % Line options
 				 % ==================
-		 		 red,
-		 		 line width = 1. pt,
-				 style = solid,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
+		 		 blue,
+		 		 line width = 1. 5pt,
+				 style = dotted,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
 				 % ==================
 				 % Mark options
 				 % ==================
@@ -119,9 +120,29 @@
 		 		]
 		 		{\datacurvenoise}
 				;
-				\addlegendentry{$s=0.45$} 
+				\addlegendentry{$B_2^{1/2}$} 
 		
-\end{loglogaxis}	
+		\addplot[
+				 % ==================
+				 % Line options
+				 % ==================
+		 		 cyan,
+		 		 line width = 1. 5pt,
+				 style = solid,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
+				 % ==================
+				 % Mark options
+				 % ==================
+		 		mark = none, % <none>, <> , more in documentation p. 176
+				 ]
+		 		table[
+		 		x = xdata,
+		 		y = ydata,
+		 		]
+		 		{\datacurvenoisecste}
+				;
+				\addlegendentry{$B_1$} 
+		
+\end{axis}	
 \end{tikzpicture}
 
 \end{document}

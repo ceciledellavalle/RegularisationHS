@@ -43,8 +43,10 @@
 % ========================================================================
 
 % Crenel
-\def\datacurve{../data/error_a1p1.txt}
-\def\datacurvenoise{../data/errorline_a1p1.txt}
+\def\datacurve{../data/error_a1.5p2.txt}
+\def\datacurvenoise{../data/errorline_a1.5p2.txt}
+\def\datacurvecste{../data/error_a1.5p2_cste.txt}
+\def\datacurvenoisecste{../data/errorline_a1.5p2_cste.txt}
 
 
 % Latex commands
@@ -71,7 +73,7 @@
 				 % ==================
 				 % Title options
 				 % ==================
-				 title =  {$a=1$,  $p=1$},
+				 title =  {$a=1.5$,  $p=2$},
 				 % ==================
 				 % Legend options
 				 % ==================
@@ -99,7 +101,7 @@
  		]
  		{\datacurve}
 		;
-		\addlegendentry{data} 
+		\addlegendentry{$B_2^{1/2}$} 
 		
  		\addplot[
 				 % ==================
@@ -119,8 +121,46 @@
 		 		]
 		 		{\datacurvenoise}
 				;
-				\addlegendentry{$s=0.45$} 
+				\addlegendentry{$s=0.58$} 
+		\addplot[
+				 % ==================
+				 % Line options
+				 % ==================
+ 				 black,
+ 				 line width = 0. 2pt,
+				 style = dashed,
+				 % ==================
+				 % Mark options
+				 % ==================
+ 				 mark = x,
+				 ]
+ 		table[
+ 		x = xdata,
+ 		y = ydata,
+ 		]
+ 		{\datacurvecste}
+		;
+		\addlegendentry{$B_1$} 
 		
+ 		\addplot[
+				 % ==================
+				 % Line options
+				 % ==================
+		 		 magenta,
+		 		 line width = 1. pt,
+				 style = solid,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
+				 % ==================
+				 % Mark options
+				 % ==================
+		 		mark = none, % <none>, <> , more in documentation p. 176
+				 ]
+		 		table[
+		 		x = xdata,
+		 		y = ydata,
+		 		]
+		 		{\datacurvenoisecste}
+				;
+				\addlegendentry{$s=0.5$} 
 \end{loglogaxis}	
 \end{tikzpicture}
 

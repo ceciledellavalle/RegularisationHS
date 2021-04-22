@@ -43,8 +43,8 @@
 % ========================================================================
 
 % Crenel
-\def\datacurve{../data/error_a1p1.txt}
-\def\datacurvenoise{../data/errorline_a1p1.txt}
+\def\datacurve{../data/Toffgauss1.5.txt}
+\def\datacurvenoise{../data/Toffgaussn1.5.txt}
 
 
 % Latex commands
@@ -55,7 +55,7 @@
 \begin{document}
 
 \begin{tikzpicture}
-\begin{loglogaxis}[
+\begin{axis}[
 			     % ==================
 			     % Main options
 			     % ==================
@@ -65,13 +65,13 @@
 				 % ==================
 			     % Label options
 			     % ==================
-				 xlabel = $\delta$,
-				 ylabel = $\| x_{\delta,\alpha,p} - x \|$,
+				 xlabel = $t$,
+				 ylabel = $y(t)$,
 				 label style = {font=\normalsize},
 				 % ==================
 				 % Title options
 				 % ==================
-				 title =  {$a=1$,  $p=1$},
+				 title =  {$a=1.5$},
 				 % ==================
 				 % Legend options
 				 % ==================
@@ -86,12 +86,12 @@
 				 % Line options
 				 % ==================
  				 black,
- 				 line width = 0. 2pt,
-				 style = dashed,
+ 				 line width = 1. pt,
+				 style = solid,
 				 % ==================
 				 % Mark options
 				 % ==================
- 				 mark = *,
+ 				 mark = none,
 				 ]
  		table[
  		x = xdata,
@@ -99,13 +99,13 @@
  		]
  		{\datacurve}
 		;
-		\addlegendentry{data} 
+		\addlegendentry{$y$} 
 		
  		\addplot[
 				 % ==================
 				 % Line options
 				 % ==================
-		 		 red,
+		 		 blue,
 		 		 line width = 1. pt,
 				 style = solid,% <solid>, <dashed>, <dotted>, <dashdotted>, more in documentation p. 181
 				 % ==================
@@ -119,9 +119,9 @@
 		 		]
 		 		{\datacurvenoise}
 				;
-				\addlegendentry{$s=0.45$} 
+				\addlegendentry{$y^\delta$} 
 		
-\end{loglogaxis}	
+\end{axis}	
 \end{tikzpicture}
 
 \end{document}

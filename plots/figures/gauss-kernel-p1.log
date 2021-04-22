@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.6)  20 APR 2021 20:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.6)  22 APR 2021 11:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Toffgauss.tex
-(./Toffgauss.tex
+**gauss-kernel-p1.tex
+(./gauss-kernel-p1.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18>
 (/usr/local/texlive/2021/texmf-dist/tex/latex/standalone/standalone.cls
@@ -860,8 +860,8 @@ LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-No file Toffgauss.aux.
-\openout1 = `Toffgauss.aux'.
+(./gauss-kernel-p1.aux)
+\openout1 = `gauss-kernel-p1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
 LaTeX Font Info:    ... okay on input line 55.
@@ -970,37 +970,41 @@ LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-PGFPlots: reading {../data/Toffgauss1.txt}
-PGFPlots: reading {../data/Toffgaussn1.txt}
+PGFPlots: reading {../data/pred0.51kernel.txt}
+PGFPlots: reading {../data/pred0.52kernel.txt}
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 124.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 124.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 124.
  [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Toff
-gauss.aux) ) 
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./gaus
+s-kernel-p1.aux) ) 
 Here is how much of TeX's memory you used:
- 29898 strings out of 478994
- 786737 string characters out of 5858185
- 1212292 words of memory out of 5000000
- 46833 multiletter control sequences out of 15000+600000
- 440221 words of font info for 73 fonts, out of 8000000 for 9000
+ 29913 strings out of 478994
+ 787024 string characters out of 5858185
+ 1219223 words of memory out of 5000000
+ 46842 multiletter control sequences out of 15000+600000
+ 447551 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 113i,18n,116p,730b,2103s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.en
-c}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
-texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texlive/20
-21/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-d
-ist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/t
-ype1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public
-/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pf
-b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/lo
-cal/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Toffgauss.pdf (1 page, 59279 bytes).
+ 113i,18n,116p,736b,2107s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.
+enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/
+local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/
+fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/
+lmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
+Output written on gauss-kernel-p1.pdf (1 page, 100995 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
